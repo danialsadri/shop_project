@@ -8,8 +8,8 @@ DEBUG = config('DEBUG', cast=bool)
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=lambda v: [s.strip() for s in v.split(',')])
 
 LOCAL_APPS = [
-    'home.apps.HomeConfig',
-    'shop.apps.ShopConfig',
+    'apps.home.apps.HomeConfig',
+    'apps.shop.apps.ShopConfig',
 ]
 
 THIRD_PARTY_APPS = [
