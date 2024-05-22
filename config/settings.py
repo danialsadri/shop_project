@@ -7,6 +7,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 LOCAL_APPS = [
+    'home.apps.HomeConfig',
     'shop.apps.ShopConfig',
 ]
 
