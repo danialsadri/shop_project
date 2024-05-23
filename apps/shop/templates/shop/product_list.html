@@ -4,5 +4,40 @@
 
 
 {% block content %}
-	
+    <div class="header">
+        {% if category %}
+            <h1>لیست محصولات بر اساس دسته بندی {{ category.title }}</h1>
+        {% else %}
+            <h1>لیست محصولات</h1>
+        {% endif %}
+    </div>
+    <div class="container">
+        <div class="small-div">
+            <ul class="categories">
+                <li class="category">
+                    <a href="{% url 'shop:product_list' %}">همه</a>
+                </li>
+                {% for category in categories %}
+                    <li class="category">
+                        <a href="{{ category.get_absolute_url }}">{{ category.title }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="large-div">
+            {% for product in products %}
+                <div class="product">
+                    <h2>
+                        <a href="{{ product.get_absolute_url }}">{{ product.title }}</a>
+                        <img class="pic" src="{{ product.product_image_models.first.file.url }}" alt="تصویر محصول">
+                        <div class="price">
+                            <span class="original-price">{{ product.price }}</span>
+                            <br>
+                            <span class="discounted-price">{{ product.new_price }}</span>
+                        </div>
+                    </h2>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}
