@@ -18,7 +18,7 @@ source venv/bin/activate
 
 #### 4.install packages
 ```sh
-pip install -r requirements.txt
+pip install -r requiremets/production.txt 
 ```
 
 #### 5.make migrations & migrate
