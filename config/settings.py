@@ -10,6 +10,7 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=lambda v: [s.strip() for s in v.spl
 LOCAL_APPS = [
     'apps.home.apps.HomeConfig',
     'apps.shop.apps.ShopConfig',
+    'apps.utils.apps.UtilsConfig',
 ]
 
 THIRD_PARTY_APPS = [
