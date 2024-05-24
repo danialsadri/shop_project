@@ -1,7 +1,6 @@
 {% extends 'parent/base.html' %}
 {% load tag %}
 
-
 {% block title %}لیست محصولات{% endblock %}
 
 {% block content %}
@@ -29,8 +28,8 @@
             {% for product in products %}
                 <div class="product">
                     <h2>
-                        <a href="{{ product.get_absolute_url }}">{{ product.title }}</a>
-                        <img class="pic" src="{{ product.product_image_models.first.file.url }}" alt="تصویر محصول">
+                        <a href="{{ product.get_absolute_url }}">{{ product.title }}</a><br>
+                        <img class="pic" src="{{ product.product_image_models.first.file.url }}" alt="تصویر محصول"><br>
                         {% if product.off >= 1 %}
                             <div class="price">
                                 <span class="original-price">{{ product.price|three_digits_currency }}</span>
