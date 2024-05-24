@@ -3,7 +3,7 @@
         <div class="cart-info-container">
             <span class="cart-icon"><i class="bi bi-shop"></i></span>
             <span class="cart-info">
-                <span class="item-count">{{ cart|length }}</span>items, <span class="total-price">{{ cart.get_total_price }}</span>
+                <span id="item_count" class="item-count">{{ cart|length }}</span>items, <span id="total_price" class="total-price">{{ cart.get_total_price }}</span>
             </span>
         </div>
     </a>
