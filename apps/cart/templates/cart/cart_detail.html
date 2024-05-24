@@ -6,11 +6,11 @@
     <div class="header">
         <h1>جزییات سبد خرید</h1>
     </div>
-    <div class="cart-content">
+    <div class="cart-detail-container">
         {% for item in cart %}
             <div class="product-item">
                 <a href="{% url 'shop:product_detail' item.product.id item.product.slug %}">
-                    <img src="{{ item.product.product_image_models.first.file.url }}" alt="تصویر محصول" style="width: 200px;">
+                    <img src="{{ item.product.product_image_models.first.file.url }}" alt="تصویر محصول" class="product-image">
                 </a>
                 <div class="product-info">
                     <h3><a href="{% url 'shop:product_detail' item.product.id item.product.slug %}">نام محصول: {{ item.product.title }}</a></h3>
