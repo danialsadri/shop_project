@@ -1,17 +1,9 @@
-import uuid
 from django.db import models
 from django.http import Http404
 
 
-def image_upload_to(instance, filename):
-    return f'images/image_{instance.id}.{filename.split(".")[-1]}'
-
-
-def file_upload_to(instance, filename):
-    return f'files/files_{instance.id}.{filename.split(".")[-1]}'
-
-
 class BaseModel(models.Model):
+    id = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='آیدی')
     created = models.DateTimeField(auto_now_add=True, verbose_name='تاریخ ایجاد')
     updated = models.DateTimeField(auto_now=True, verbose_name='تاریخ ویرایش')
 

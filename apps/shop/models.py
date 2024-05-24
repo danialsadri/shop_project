@@ -1,4 +1,4 @@
-from apps.utils.models import BaseModel, image_upload_to
+from apps.utils.models import BaseModel
 from django.db import models
 from django.urls import reverse
 
@@ -68,7 +68,7 @@ class ProductFeatureModel(BaseModel):
 
 class ProductImageModel(BaseModel):
     product = models.ForeignKey(to=ProductModel, on_delete=models.CASCADE, related_name='product_image_models', verbose_name='محصول')
-    file = models.ImageField(upload_to=image_upload_to, verbose_name='فایل')
+    file = models.ImageField(upload_to='product_image/', verbose_name='فایل')
 
     class Meta:
         ordering = ['-created']
