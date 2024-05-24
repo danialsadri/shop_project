@@ -17,11 +17,17 @@
                     <li>{{ feature.key }} : {{ feature.value }}</li>
                 {% endfor %}
             </ul>
-            <div class="price">
-                <span class="original-price">قیمت: {{ product.price|three_digits_currency }}</span>
-                <br>
-                <span class="discounted-price-d">قیمت پس از تخفیف: {{ product.new_price|three_digits_currency }}</span>
-            </div>
+            {% if product.off >= 1 %}
+                <div class="price">
+                    <span class="original-price">قیمت: {{ product.price|three_digits_currency }}</span>
+                    <br>
+                    <span class="discounted-price-d">قیمت پس از تخفیف: {{ product.new_price|three_digits_currency }}</span>
+                </div>
+            {% else %}
+                <div class="price">
+                    <span class="discounted-price-d">قیمت: {{ product.new_price|three_digits_currency }}</span>
+                </div>
+            {% endif %}
         </div>
         <div class="product-images">
             {% for image in product.product_image_models.all %}
