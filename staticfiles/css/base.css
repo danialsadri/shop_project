@@ -1,8 +1,11 @@
 .header {
     text-align: center;
-    padding: 20px;
     background-color: #333;
     color: #fff;
+}
+
+.header h1 {
+    padding: 70px;
 }
 
 .container {
@@ -136,4 +139,8 @@ a:link, a:visited {
 
 .total-price {
 
+}
+
+.product-info {
+    background-color: dimgrey;
 }

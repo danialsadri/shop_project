@@ -1,7 +1,13 @@
 from django.http import JsonResponse
+from django.shortcuts import render
 from django.views.decorators.http import require_POST
 from apps.shop.models import ProductModel
 from .cart import Cart
+
+
+def cart_detail(request):
+    cart = Cart(request)
+    return render(request, 'cart/cart_detail.html', {'cart': cart})
 
 
 @require_POST

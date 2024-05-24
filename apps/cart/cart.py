@@ -17,6 +17,7 @@ class Cart:
         for product in products:
             cart_dict[str(product.id)]['product'] = product
         for item in cart_dict.values():
+            item['total'] = item['price'] * item['quantity']
             yield item
 
     def __len__(self):
@@ -58,6 +59,9 @@ class Cart:
             return 30000
         else:
             return 50000
+
+    def get_final_price(self):
+        return self.get_total_price() + self.get_post_price()
 
     def save(self):
         self.session.modified = True
