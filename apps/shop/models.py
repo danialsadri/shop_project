@@ -31,6 +31,7 @@ class ProductModel(BaseModel):
     price = models.PositiveBigIntegerField(default=0, verbose_name='قیمت')
     off = models.PositiveBigIntegerField(default=0, verbose_name='تخفیف')
     new_price = models.PositiveBigIntegerField(default=0, verbose_name='قیمت پس از تخفیف')
+    weight = models.PositiveBigIntegerField(default=0, verbose_name='وزن')
 
     class Meta:
         ordering = ['-created']
