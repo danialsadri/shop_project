@@ -11,6 +11,7 @@ LOCAL_APPS = [
     'apps.home.apps.HomeConfig',
     'apps.shop.apps.ShopConfig',
     'apps.utils.apps.UtilsConfig',
+    'apps.cart.apps.CartConfig',
 ]
 
 THIRD_PARTY_APPS = [
