@@ -46,7 +46,9 @@
             $('.quantity-decrease').on('click', function () {
                 update_quantity($(this).closest('.product-item').data('item-id'), 'decrease');
             });
-
+            $('.quantity-remove').on('click', function () {
+                remove_item($(this).closest('.product-item').data('item-id'));
+            });
             function update_quantity(itemId, action) {
                 $.ajax({
                     type: 'POST',
@@ -65,6 +67,28 @@
                             $('#item-total_price').text(data.total_price);
                             $('#item-post_price').text(data.post_price);
                             $('#item-final_price').text(data.final_price);
+                        } else {
+                            alert('error updated quantity');
+                        }
+                    },
+                });
+            }
+            function remove_item(itemId) {
+                $.ajax({
+                    type: 'POST',
+                    url: '{% url 'cart:remove_item' %}',
+                    data: {
+                        "csrfmiddlewaretoken": "{{ csrf_token }}",
+                        'item_id': itemId,
+                    },
+                    success(data) {
+                        if (data.success) {
+                            $('#item_count').text(data.item_count);
+                            $('#total_price').text(data.total_price);
+                            $('#item-total_price').text(data.total_price);
+                            $('#item-post_price').text(data.post_price);
+                            $('#item-final_price').text(data.final_price);
+                            $(`.product-item[data-item-id=${itemId}]`).remove();
                         } else {
                             alert('error updated quantity');
                         }
