@@ -26,3 +26,34 @@ def add_to_cart(request, product_id):
             {'error': 'invalid request'},
         }
         return JsonResponse(context)
+
+
+@require_POST
+def update_quantity(request):
+    item_id = request.POST.get('item_id')
+    action = request.POST.get('action')
+    try:
+        product = ProductModel.get_object_or_404(id=item_id)
+        cart = Cart(request)
+        if action == 'add':
+            cart.add(product)
+        elif action == 'decrease':
+            cart.decrease(product)
+        else:
+            pass
+        context = {
+            'success': True,
+            'item_count': len(cart),
+            'total_price': cart.get_total_price(),
+            'quantity': cart.cart[item_id]['quantity'],
+            'total': cart.cart[item_id]['price'] * cart.cart[item_id]['quantity'],
+            'post_price': cart.get_post_price(),
+            'final_price': cart.get_final_price(),
+        }
+        return JsonResponse(context)
+    except:
+        context = {
+            'success': False,
+            'error': 'item not found',
+        }
+        return JsonResponse(context)
