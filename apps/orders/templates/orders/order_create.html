@@ -1,0 +1,22 @@
+{% extends 'parent/base.html' %}
+
+{% block title %}سفارش شما{% endblock %}
+
+
+{% block content %}
+    <h2>محصولات انتخاب شده شما</h2>
+    {% for item in cart %}
+        <li>
+            {{ item.quantity }} x {{ item.product.name }}
+            {{ item.total }}
+        </li>
+    {% endfor %}
+    <h2>
+        اطلاعات سفارش را تکمیل کنید
+    </h2>
+    <form action="" method="post" novalidate>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="ارسال">
+    </form>
+{% endblock %}

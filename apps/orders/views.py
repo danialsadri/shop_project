@@ -1,9 +1,12 @@
 import random
 from django.contrib import messages
 from django.contrib.auth import login
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from apps.accounts.models import User
-from .forms import PhoneVerificationForm
+from apps.cart.cart import Cart
+from apps.orders.models import OrderItemModel
+from .forms import PhoneVerificationForm, OrderCreateForm
 
 
 def verify_phone(request):
@@ -48,3 +51,26 @@ def verify_code(request):
             else:
                 messages.error(request, 'Verification code is incorrect.')
     return render(request, 'orders/verify_code.html')
+
+
+@login_required
+def order_create(request):
+    cart = Cart(request)
+    if request.method == 'POST':
+        form = OrderCreateForm(request.POST)
+        if form.is_valid():
+            order = form.save()
+            order.user = request.user
+            order.save()
+            for item in cart:
+                OrderItemModel.objects.create(
+                    order=order, product=item['product'],
+                    price=item['price'], quantity=item['quantity'],
+                    weight=item['weight']
+                )
+            cart.clear()
+            request.session['order_id'] = order.id
+            return redirect('orders:request')
+    else:
+        form = OrderCreateForm()
+    return render(request, 'orders/order_create.html', {'form': form, 'cart': cart})
