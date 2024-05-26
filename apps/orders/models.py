@@ -1,11 +1,10 @@
-from django.contrib.auth.models import User
 from django.db import models
 from apps.shop.models import ProductModel
 from apps.utils.models import BaseModel
 
 
 class OrderModel(BaseModel):
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, related_name='order_models', blank=True, null=True, verbose_name='کاربر')
+    user = models.ForeignKey('accounts.User', on_delete=models.SET_NULL, related_name='order_models', blank=True, null=True, verbose_name='کاربر')
     first_name = models.CharField(max_length=300, verbose_name='نام')
     last_name = models.CharField(max_length=300, verbose_name='نام خانوادگی')
     phone = models.CharField(max_length=11, verbose_name='شماره تلفن')

@@ -13,6 +13,7 @@ LOCAL_APPS = [
     'apps.utils.apps.UtilsConfig',
     'apps.cart.apps.CartConfig',
     'apps.orders.apps.OrdersConfig',
+    'apps.accounts.apps.AccountsConfig',
 ]
 
 THIRD_PARTY_APPS = [
@@ -120,3 +121,5 @@ ROOT_URLCONF = 'config.urls'
 WSGI_APPLICATION = 'config.wsgi.application'
 
 CART_SESSION_ID = 'cart'
+
+AUTH_USER_MODEL = 'accounts.User'

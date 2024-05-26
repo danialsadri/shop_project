@@ -9,6 +9,7 @@ urlpatterns = [
     path('product/', include('apps.shop.urls', namespace='shop')),
     path('cart/', include('apps.cart.urls', namespace='cart')),
     path('orders/', include('apps.orders.urls', namespace='orders')),
+    path('accounts/', include('apps.accounts.urls', namespace='accounts')),
 ]
 
 if settings.DEBUG:
