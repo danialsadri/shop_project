@@ -152,5 +152,5 @@ def orders_list(request):
 
 
 def order_detail(request, id):
-    order = OrderModel.objects.get(id=id)
+    order = OrderModel.objects.get(user=request.user, id=id)
     return render(request, 'orders/order-detail.html', {'order': order})
