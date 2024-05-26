@@ -1,0 +1,14 @@
+{% extends 'parent/base.html' %}
+
+{% block title %}تایید شماره تلفن {% endblock %}
+
+
+{% block content %}
+    <form action="" method="post" novalidate>
+        {% csrf_token %}
+        {{ form.phone.label_tag }}
+        {{ form.phone }}
+        {{ form.phone.errors }}
+        <input type="submit" value="تایید">
+    </form>
+{% endblock %}

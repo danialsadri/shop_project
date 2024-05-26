@@ -3,13 +3,14 @@
 <head>
     <meta charset="utf-8">
     <title>{% block title %}{% endblock %}</title>
-    <link rel="icon" sizes="192x192" href="https://static.djangoproject.com/img/icon-touch.e4872c4da341.png">    
+    <link rel="icon" sizes="192x192" href="https://static.djangoproject.com/img/icon-touch.e4872c4da341.png">
     {% include 'partials/header_references.html' %}
     {% block header_references %}{% endblock %}
 </head>
 <body>
 
 {% include 'partials/header.html' %}
+{% include 'partials/messages.html' %}
 {% block content %}{% endblock %}
 {% include 'partials/footer.html' %}
 

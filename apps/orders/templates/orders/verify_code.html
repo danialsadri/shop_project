@@ -1,0 +1,12 @@
+{% extends 'parent/base.html' %}
+
+{% block title %}بررسی کد تایید {% endblock %}
+
+
+{% block content %}
+    <form action="" method="post" novalidate>
+        {% csrf_token %}
+        <input type="text" name="code" placeholder="کد تایید را وارد کنید">
+        <input type="submit" value="تایید">
+    </form>
+{% endblock %}
