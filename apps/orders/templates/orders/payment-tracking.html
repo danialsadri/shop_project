@@ -4,5 +4,15 @@
 
 
 {% block content %}
-
+    {% if success %}
+        <div class="success">
+            <p>پرداخت موفق</p>
+            <p>شماره پیگیری: {{ RefID }}</p>
+            <p>شماره سفارش: {{ order_id }}</p>
+        </div>
+    {% else %}
+        <div class="failure">
+            <p>پرداخت با شکست مواجه شد</p>
+        </div>
+    {% endif %}
 {% endblock %}
