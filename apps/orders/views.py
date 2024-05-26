@@ -10,6 +10,7 @@ from django.shortcuts import render, redirect
 from apps.accounts.models import User
 from apps.cart.cart import Cart
 from apps.orders.models import OrderItemModel, OrderModel
+from config.settings import CallbackURL, MERCHANT, ZP_API_REQUEST, ZP_API_STARTPAY, ZP_API_VERIFY
 from .forms import PhoneVerificationForm, OrderCreateForm
 
 
@@ -80,25 +81,13 @@ def order_create(request):
     return render(request, 'orders/order_create.html', {'form': form, 'cart': cart})
 
 
-# ? sandbox merchant
-if settings.SANDBOX:
-    sandbox = 'sandbox'
-else:
-    sandbox = 'www'
-
-ZP_API_REQUEST = f"https://{sandbox}.zarinpal.com/pg/rest/WebGate/PaymentRequest.json"
-ZP_API_VERIFY = f"https://{sandbox}.zarinpal.com/pg/rest/WebGate/PaymentVerification.json"
-ZP_API_STARTPAY = f"https://{sandbox}.zarinpal.com/pg/StartPay/"
-CallbackURL = 'http://127.0.0.1:8000/orders/verify/'
-
-
 def send_request(request):
     order = OrderModel.objects.get(id=request.session['order_id'])
     description = ""
-    for item in order.items.all():
+    for item in order.order_items.all():
         description += item.product.name + ", "
     data = {
-        "MerchantID": settings.MERCHANT,
+        "MerchantID": MERCHANT,
         "Amount": order.get_final_cost(),
         "Description": description,
         "Phone": request.user.phone,
@@ -155,3 +144,13 @@ def verify(request):
         return HttpResponse('Timeout Error')
     except requests.exceptions.ConnectionError:
         return HttpResponse('Connection Error')
+
+
+def orders_list(request):
+    orders = OrderModel.objects.filter(user=request.user)
+    return render(request, 'orders/orders-list.html', {'orders': orders})
+
+
+def order_detail(request, id):
+    order = OrderModel.objects.get(id=id)
+    return render(request, 'orders/order-detail.html', {'order': order})

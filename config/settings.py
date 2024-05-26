@@ -123,3 +123,16 @@ WSGI_APPLICATION = 'config.wsgi.application'
 CART_SESSION_ID = 'cart'
 
 AUTH_USER_MODEL = 'accounts.User'
+
+MERCHANT = 'mmmm'
+SANDBOX = False
+if SANDBOX:
+    sandbox = 'sandbox'
+else:
+    sandbox = 'www'
+
+ZP_API_REQUEST = f"https://{sandbox}.zarinpal.com/pg/rest/WebGate/PaymentRequest.json"
+ZP_API_VERIFY = f"https://{sandbox}.zarinpal.com/pg/rest/WebGate/PaymentVerification.json"
+ZP_API_STARTPAY = f"https://{sandbox}.zarinpal.com/pg/StartPay/"
+CallbackURL = 'http://127.0.0.1:8000/orders/verify/'
+

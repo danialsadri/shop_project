@@ -1,0 +1,11 @@
+{% extends 'parent/base.html' %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+    {% for item in order.order_items.all %}
+        {{ item.product.title }}
+        {{ item.product.quantity }}
+        {{ item.product.price }}
+    {% endfor %}
+{% endblock %}
